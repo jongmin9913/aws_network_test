@@ -12,6 +12,21 @@ export class AppController {
   private readonly axiosClient = Axios.create()
   constructor(private readonly appService: AppService) {}
 
+  @Get('/')
+	public async index() {
+		return {
+			result: 'ok',
+		}
+	}
+
+	@Get('/check')
+	public async check() {
+		return {
+			success: true,
+			now: new Date(),
+		}
+	}
+
   @Get('/my')
   public getMyInfo(): MyInfo {
     return this.appService.getMyInfo()

@@ -1,0 +1,21 @@
+version: 1
+task_definition:
+  task_role_arn: jmlee-vpc-role
+  task_execution_role: jmlee-vpc-role
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
+
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-07cf348dc904dce78
+        - subnet-0cf7ccc82a6aeb505
+      security_groups:
+        - sg-083b446ea70818b8d
+      assign_public_ip: ENABLED
+    service_discovery:
+      container_name: io-push-render-worker-dev
+      container_port: 80

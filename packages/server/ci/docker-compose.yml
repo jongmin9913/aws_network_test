@@ -1,0 +1,16 @@
+version: '3'
+services:
+  jmlee-vpn1-subnet1-alb1:
+    build:
+      context: ../../..
+      dockerfile: ./packages/server/ci/Dockerfile
+    image: 345073223387.dkr.ecr.ap-northeast-2.amazonaws.com/jmlee-vpc
+    ports:
+      - 80:80
+    command: ["yarn", "start"]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/io-push-b2b-apis
+        awslogs-region: ap-northeast-2
+        awslogs-stream-prefix: ecs
